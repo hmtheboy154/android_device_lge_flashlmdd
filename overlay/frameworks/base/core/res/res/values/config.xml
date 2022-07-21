@@ -86,6 +86,40 @@
     <!-- Slow brightness animation ramp rate in brightness units per second-->
     <integer name="config_brightness_ramp_rate_slow">60</integer>
 
+    <integer-array name="config_ambientBrighteningThresholds">
+        <item>5000</item>
+        <item>4000</item>
+        <item>3000</item>
+        <item>2000</item>
+        <item>1000</item>
+        <item>500</item>
+        <item>500</item>
+    </integer-array>
+    <integer-array name="config_ambientDarkeningThresholds">
+        <item>950</item>
+        <item>950</item>
+        <item>950</item>
+        <item>950</item>
+        <item>950</item>
+        <item>950</item>
+        <item>900</item>
+    </integer-array>
+    <integer-array name="config_ambientThresholdLevels">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>1000</item>
+    </integer-array>
+    <integer-array name="config_autoBrightnessButtonBacklightValues">
+        <item>255</item>
+        <item>255</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+    
     <!-- Array of desired screen brightness in nits corresponding to the lux values
          in the config_autoBrightnessLevels array. As with config_screenBrightnessMinimumNits and
          config_screenBrightnessMaximumNits, the display brightness is defined as the measured
