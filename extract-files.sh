@@ -11,6 +11,9 @@ function blob_fixup() {
         vendor/lib64/hw/fingerprint.msmnile.so)
             "${PATCHELF}" --add-needed "libRbsFlow_shim.so" "${2}"
             ;;
+        vendor/lib*/liblgdnnsnpe.so|vendor/lib*/liblgsnpeawb.so)
+            "${PATCHELF_0_17_2}" --replace-needed libstdc++.so libstdc++_vendor.so "${2}"
+            ;;
     esac
 }
 
