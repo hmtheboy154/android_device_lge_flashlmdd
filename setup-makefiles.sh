@@ -8,7 +8,7 @@
 
 set -e
 
-export DEVICE=mh2lm
+export DEVICE=flashlmdd
 export DEVICE_COMMON=sm8150-common
 export VENDOR=lge
 
