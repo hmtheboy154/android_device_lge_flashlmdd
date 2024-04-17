@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES += \
-    $(LOCAL_DIR)/lineage_mh2lm.mk
+    $(LOCAL_DIR)/lineage_flashlmdd.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_mh2lm-eng \
-    lineage_mh2lm-user \
-    lineage_mh2lm-userdebug
+    lineage_flashlmdd-eng \
+    lineage_flashlmdd-user \
+    lineage_flashlmdd-userdebug

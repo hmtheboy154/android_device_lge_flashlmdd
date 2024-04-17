@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- Copyright (c) 2016-2017, The Linux Foundation. All rights reserved.    -->
+<!-- Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.    -->
 <!--                                                                        -->
 <!-- Redistribution and use in source and binary forms, with or without     -->
 <!-- modification, are permitted provided that the following conditions are -->
@@ -404,52 +404,6 @@
 
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia3" value="0" />
 
-    <!-- CS35L41 Controls -->
-    <!-- Left / Right Speaker On/Off Control (default On) -->
-    <ctl name="Left Speaker Switch" value="1" />
-    <ctl name="Right Speaker Switch" value="1" />
-    <!-- Left / Right Speaker Channel Mixing (default not Mixing) -->
-    <ctl name="Left DSP RX2 Source" value="ASPRX1" />
-    <ctl name="Right DSP RX2 Source" value="ASPRX1" />
-    <!-- Right Speaker Select Right Channel -->
-    <ctl name="Right ASPRX1 Slot Position" value="1" />
-    <ctl name="Right ASPRX2 Slot Position" value="0" />
-    <!-- Left / Right Speaker setting -->
-    <ctl name="Left DSP1 Firmware" value="L_Prot" />
-    <ctl name="Left PCM Source" value="DSP" />
-    <ctl name="Left DSP1 Preload Switch" value="1" />
-    <ctl name="Right DSP1 Firmware" value="R_Prot" />
-    <ctl name="Right PCM Source" value="DSP" />
-    <ctl name="Right DSP1 Preload Switch" value="1" />
-    <ctl name="Left AMP PCM Gain" value="17" />
-    <ctl name="Right AMP PCM Gain" value="17" />
-    <ctl name="Left Digital PCM Volume" value="817" />
-    <ctl name="Right Digital PCM Volume" value="817" />
-    <ctl name="Left PCM Soft Ramp" value="1ms" />
-    <ctl name="Right PCM Soft Ramp" value="1ms" />
-
-    <ctl name="Left ASPTX1 Slot Position" value="0" />
-    <ctl name="Left ASPTX2 Slot Position" value="1" />
-    <ctl name="Left ASPTX3 Slot Position" value="2" />
-    <ctl name="Left ASPTX4 Slot Position" value="3" />
-    <ctl name="Right ASPTX1 Slot Position" value="0" />
-    <ctl name="Right ASPTX2 Slot Position" value="1" />
-    <ctl name="Right ASPTX3 Slot Position" value="2" />
-    <ctl name="Right ASPTX4 Slot Position" value="3" />
-    <ctl name="Left ASP TX1 Source" value="VMON" />
-    <ctl name="Right ASP TX1 Source" value="VMON" />
-    <ctl name="Left ASP TX2 Source" value="IMON" />
-    <ctl name="Right ASP TX2 Source" value="IMON" />
-    <ctl name="Left ASP TX3 Source" value="Zero" />
-    <ctl name="Right ASP TX3 Source" value="Zero" />
-    <ctl name="Left ASP TX4 Source" value="Zero" />
-    <ctl name="Right ASP TX4 Source" value="Zero" />
-
-    <!-- EQ / MBDRC Bypass On/Off : Left - SPK / Rught - RCV-->
-    <ctl name="Left Fast Use Case Switch Enable" value="0" />
-    <ctl name="Right Fast Use Case Switch Enable" value="0" />
-    <!-- CS35L41 Controls end-->
-
     <!-- Codec controls -->
     <!-- WSA controls -->
     <!-- LGE Do not use
@@ -713,6 +667,9 @@
     <ctl name="Es9218 Bypass" value="0" />
     <!-- TERT MI2S TDM HEADPHONE -->
     <ctl name="Es9018 AVC Volume" value="25" />
+    <ctl name="SPK Profile" value="music" />
+    <ctl name="SPK SaaM" value="0" />
+
     <!-- Codec controls end -->
 
     <!-- mixer control to disable lowlatency qos voting -->
@@ -732,6 +689,13 @@
 
     <path name="echo-reference">
         <ctl name="AUDIO_REF_EC_UL1 MUX" value="SEC_MI2S_RX" />
+        <ctl name="EC Reference Channels" value="Two"/>
+        <ctl name="EC Reference Bit Format" value="S16_LE"/>
+        <ctl name="EC Reference SampleRate" value="48000"/>
+    </path>
+
+    <path name="echo-reference handset">
+        <ctl name="AUDIO_REF_EC_UL1 MUX" value="SEC_MI2S_RX" />
         <ctl name="EC Reference Channels" value="One"/>
         <ctl name="EC Reference Bit Format" value="S16_LE"/>
         <ctl name="EC Reference SampleRate" value="48000"/>
@@ -742,6 +706,10 @@
         <ctl name="EC Reference Channels" value="Two"/>
         <ctl name="EC Reference Bit Format" value="S16_LE"/>
         <ctl name="EC Reference SampleRate" value="48000"/>
+    </path>
+
+    <path name="echo-reference voip-hac">
+        <ctl name="AUDIO_REF_EC_UL1 MUX" value="SLIM_RX" />
     </path>
 
     <path name="echo-reference headphones">
@@ -1560,6 +1528,11 @@
         <ctl name="SLIMBUS_DL_HL Switch" value="1" />
     </path>
 
+    <path name="play-fm speaker-and-headphones">
+        <path name="play-fm headphones" />
+        <path name="play-fm speaker" />
+    </path>
+
     <path name="play-fm headphones">
         <ctl name="SLIMBUS_8 LOOPBACK Volume" value="1" />
         <ctl name="SLIMBUS_6_RX Port Mixer SLIM_8_TX" value="1" />
@@ -1974,7 +1947,7 @@
 
     <!-- VoIP Rx settings -->
     <path name="audio-playback-voip">
-        <ctl name="SEC_MI2S_RX Audio Mixer MultiMedia10" value="1" />
+        <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia10" value="1" />
     </path>
 
     <path name="audio-playback-voip speaker">
@@ -2146,35 +2119,15 @@
     </path>
 
     <path name="speaker">
-        <ctl name="Right ASPRX1 Slot Position" value="1" />
-        <ctl name="Right ASPRX2 Slot Position" value="0" />
-        <ctl name="Left Speaker Switch" value="1" />
-        <ctl name="Right Speaker Switch" value="1" />
-        <ctl name="Left DSP RX2 Source" value="ASPRX1" />
-        <ctl name="Right DSP RX2 Source" value="ASPRX1" />
-    </path>
-
-    <path name="speaker-mono">
-        <ctl name="Right ASPRX1 Slot Position" value="1" />
-        <ctl name="Right ASPRX2 Slot Position" value="0" />
-        <ctl name="Left Speaker Switch" value="1" />
-        <ctl name="Right Speaker Switch" value="0" />
-        <ctl name="Left DSP RX2 Source" value="ASPRX2" />
-        <ctl name="Right DSP RX2 Source" value="ASPRX2" />
     </path>
 
     <path name="speaker-mits-melody">
-        <path name="speaker-mono" />
-        <ctl name="Left AMP PCM Gain" value="7"/>
-        <ctl name="Right AMP PCM Gain" value="7" />
-        <ctl name="Left PCM Source" value="ASP" />
-        <ctl name="Right PCM Source" value="ASP" />
     </path>
 
     <path name="speaker-mits-camcorder">
-        <path name="speaker" />
-	<ctl name="Left PCM Source" value="ASP" />
-	<ctl name="Right PCM Source" value="ASP" />
+    </path>
+
+    <path name="speaker-mono">
     </path>
 
     <path name="speaker-mono-2">
@@ -2308,46 +2261,6 @@
     </path>
 -->
 
-<!-- External Echo Reference start -->
-    <path name="external-echo-reference-device">
-        <ctl name="Left ASPTX1 Slot Position" value="0" />
-	<ctl name="Left ASPTX2 Slot Position" value="7" />
-	<ctl name="Left ASPTX3 Slot Position" value="7" />
-	<ctl name="Left ASPTX4 Slot Position" value="7" />
-	<ctl name="Right ASPTX1 Slot Position" value="1" />
-	<ctl name="Right ASPTX2 Slot Position" value="7" />
-	<ctl name="Right ASPTX3 Slot Position" value="7" />
-	<ctl name="Right ASPTX4 Slot Position" value="7" />
-	<ctl name="Left ASP TX1 Source" value="DSPTX1" />
-	<ctl name="Right ASP TX1 Source" value="DSPTX1" />
-	<ctl name="Left ASP TX2 Source" value="Zero" />
-	<ctl name="Right ASP TX2 Source" value="Zero" />
-	<ctl name="Left ASP TX3 Source" value="Zero" />
-	<ctl name="Right ASP TX3 Source" value="Zero" />
-	<ctl name="Left ASP TX4 Source" value="Zero" />
-	<ctl name="Right ASP TX4 Source" value="Zero" />
-    </path>
-    <path name="voice-external-echo-reference-device">
-        <ctl name="Left ASPTX1 Slot Position" value="0" />
-	<ctl name="Left ASPTX2 Slot Position" value="7" />
-	<ctl name="Left ASPTX3 Slot Position" value="7" />
-	<ctl name="Left ASPTX4 Slot Position" value="7" />
-	<ctl name="Right ASPTX1 Slot Position" value="1" />
-	<ctl name="Right ASPTX2 Slot Position" value="7" />
-	<ctl name="Right ASPTX3 Slot Position" value="7" />
-	<ctl name="Right ASPTX4 Slot Position" value="7" />
-	<ctl name="Left ASP TX1 Source" value="DSPTX1" />
-	<ctl name="Right ASP TX1 Source" value="DSPTX1" />
-	<ctl name="Left ASP TX2 Source" value="Zero" />
-	<ctl name="Right ASP TX2 Source" value="Zero" />
-	<ctl name="Left ASP TX3 Source" value="Zero" />
-	<ctl name="Right ASP TX3 Source" value="Zero" />
-	<ctl name="Left ASP TX4 Source" value="Zero" />
-	<ctl name="Right ASP TX4 Source" value="Zero" />
-	<ctl name="VOC_EXT_EC MUX" value="SEC_MI2S_TX" />
-    </path>
-<!-- External Echo Reference end -->
-
     <path name="speaker-protected-vbat">
         <path name="speaker-protected" />
     </path>
@@ -2367,14 +2280,15 @@
     </path>
 
     <path name="handset">
-        <ctl name="Right ASPRX1 Slot Position" value="1" />
-        <ctl name="Right ASPRX2 Slot Position" value="0" />
-        <ctl name="Left Speaker Switch" value="0" />
-        <ctl name="Right Speaker Switch" value="1" />
-        <ctl name="Left DSP RX2 Source" value="ASPRX2" />
-        <ctl name="Right DSP RX2 Source" value="ASPRX2" />
-        <ctl name="Right PCM Source" value="ASP" />
-        <ctl name="Right AMP PCM Gain" value="4" />
+        <ctl name="SPK Profile" value="rcvcall" />
+    </path>
+
+    <path name="handset-qrd">
+        <ctl name="SLIM RX0 MUX" value="AIF1_PB" />
+        <ctl name="CDC_IF RX0 MUX" value="SLIM RX0" />
+        <ctl name="SLIM_0_RX Channels" value="One" />
+        <ctl name="RX INT0_1 MIX1 INP0" value="RX0" />
+        <ctl name="EAR PA Gain" value="G_6_DB" />
     </path>
 
     <path name="handset-mic">
@@ -2395,20 +2309,17 @@
     <path name="three-mic">
         <ctl name="AIF1_CAP Mixer SLIM TX5" value="1" />
         <ctl name="AIF1_CAP Mixer SLIM TX6" value="1" />
-        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
+        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
         <ctl name="SLIM_0_TX Channels" value="Three" />
         <ctl name="CDC_IF TX5 MUX" value="DEC5" />
-        <ctl name="ADC MUX5" value="AMIC" />
-        <ctl name="AMIC MUX5" value="ADC3" />
-        <ctl name="ADC1 Volume" value="8" />
+        <ctl name="ADC MUX5" value="DMIC" />
+        <ctl name="DMIC MUX5" value="DMIC2" />
         <ctl name="CDC_IF TX6 MUX" value="DEC6" />
-        <ctl name="ADC MUX6" value="AMIC" />
-        <ctl name="AMIC MUX6" value="ADC1" />
-        <ctl name="ADC3 Volume" value="8" />
-        <ctl name="CDC_IF TX7 MUX" value="DEC7" />
-        <ctl name="ADC MUX7" value="AMIC" />
-        <ctl name="AMIC MUX7" value="ADC4" />
-        <ctl name="ADC4 Volume" value="8" />
+        <ctl name="ADC MUX6" value="DMIC" />
+        <ctl name="DMIC MUX6" value="DMIC0" />
+        <ctl name="CDC_IF TX8 MUX" value="DEC8" />
+        <ctl name="ADC MUX8" value="DMIC" />
+        <ctl name="DMIC MUX8" value="DMIC5" />
     </path>
 
     <path name="three-mic-qrd">
@@ -2546,11 +2457,8 @@
     </path>
 
     <path name="voice-speaker">
-        <path name="speaker" />
-        <ctl name="Left AMP PCM Gain" value="17"/>
-        <ctl name="Right AMP PCM Gain" value="17" />
-        <ctl name="Left PCM Source" value="ASP" />
-        <ctl name="Right PCM Source" value="ASP" />
+        <path name="speaker-mono" />
+        <ctl name="SPK Profile" value="spkcall" />
     </path>
 
     <path name="voice-speaker-stereo">
@@ -2655,6 +2563,7 @@
 
     <path name="anc-fb-headphones">
         <path name="anc-headphones" />
+        <ctl name="ANC Slot" value="1" />
     </path>
 
     <path name="speaker-and-anc-fb-headphones">
@@ -3525,7 +3434,7 @@
 
     <path name="deep-buffer-playback speaker-and-headphones">
         <path name="deep-buffer-playback headphones" />
-        <path name="deep-buffer-playback speaker" />
+	<path name="deep-buffer-playback speaker" />
     </path>
 
     <path name="deep-buffer-playback bt-sco-and-speaker">
@@ -4234,27 +4143,20 @@
 
 <!-- FR_THD Play (1st Speaker) -->
     <path name="speaker1-frthd">
-        <path name="speaker-mono" />
-	<ctl name="Left PCM Source" value="ASP" />
-	<ctl name="Right PCM Source" value="ASP" />
+        <path name="speaker" />
+	<ctl name="SPK Profile" value="rcvbypass" />
     </path>
 
 <!-- FR_THD Play (2nd Speaker) -->
     <path name="speaker2-frthd">
-        <path name="handset" />
-        <ctl name="Left AMP PCM Gain" value="0"/>
-        <ctl name="Right AMP PCM Gain" value="0" />
-        <ctl name="Left Digital PCM Volume" value="737"/>
-        <ctl name="Right Digital PCM Volume" value="737" /> 
-	<ctl name="Left PCM Source" value="ASP" />
-	<ctl name="Right PCM Source" value="ASP" />
+        <path name="speaker" />
+	<ctl name="SPK Profile" value="spkbypass" />
     </path>
 
 <!-- FR_THD Play (Stereo Speaker) -->
     <path name="speaker-stereo-frthd">
         <path name="speaker" />
-	<ctl name="Left PCM Source" value="ASP" />
-	<ctl name="Right PCM Source" value="ASP" />
+	<ctl name="SPK Profile" value="stereobypass" />
     </path>
 
     <path name="handset-aat">
@@ -4312,7 +4214,8 @@
     </path>
 
     <path name="speaker-vc">
-        <path name="speaker" />
+        <path name="speaker-mono" />
+        <ctl name="SPK Profile" value="spkcall" />
     </path>
 
     <path name="fake_speaker">
@@ -4583,14 +4486,12 @@
 
     <path name="loopback-earpiece">
         <path name="handset" />
-	<ctl name="Left PCM Source" value="ASP" />
-	<ctl name="Right PCM Source" value="ASP" />
+        <ctl name="SPK Profile" value="rcvbypass" />
     </path>
 
     <path name="loopback-speaker">
         <path name="speaker-mono" />
-	<ctl name="Left PCM Source" value="ASP" />
-	<ctl name="Right PCM Source" value="ASP" />
+        <ctl name="SPK Profile" value="spkbypass" />
     </path>
 
     <path name="loopback-headphones">
@@ -4609,7 +4510,7 @@
     </path>
 
     <path name="voip-speaker">
-        <path name="speaker" />
+        <ctl name="SPK Profile" value="spkcall" />
     </path>
 
     <path name="voip-headphones">
@@ -4653,8 +4554,8 @@
 
     <path name="headset-mic-vr">
         <path name="headset-mic" />
-        <ctl name="DEC0 Volume" value="80" />
-        <ctl name="ADC2 Volume" value="12" />
+        <ctl name="DEC1 Volume" value="90" />
+        <ctl name="ADC2 Volume" value="15" />
     </path>
 
     <path name="submic-1">
@@ -4737,6 +4638,8 @@
         <ctl name="CDC_IF TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
         <ctl name="DMIC MUX8" value="DMIC0" />
+        <ctl name="SPK SaaM" value="1" />
+        <ctl name="SPK Profile" value="ram" />
     </path>
 <!-- depending on dual mic -->
     <path name="camcorder-90">
@@ -4760,6 +4663,8 @@
         <ctl name="CDC_IF TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
         <ctl name="DMIC MUX8" value="DMIC0" />
+        <ctl name="SPK SaaM" value="1" />
+        <ctl name="SPK Profile" value="ram" />
     </path>
 <!-- depending on dual mic -->
     <path name="camcorder-180">
@@ -4783,6 +4688,8 @@
         <ctl name="CDC_IF TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
         <ctl name="DMIC MUX8" value="DMIC0" />
+        <ctl name="SPK SaaM" value="1" />
+        <ctl name="SPK Profile" value="ram" />
     </path>
 <!-- depending on dual mic -->
     <path name="camcorder-270">
@@ -4806,11 +4713,13 @@
         <ctl name="CDC_IF TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
         <ctl name="DMIC MUX8" value="DMIC0" />
+        <ctl name="SPK SaaM" value="1" />
+        <ctl name="SPK Profile" value="ram" />
     </path>
 
     <path name="headset-camcorder-mic">
         <path name="headset-mic" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
         <ctl name="ADC2 Volume" value="6" />
     </path>
 
@@ -4986,69 +4895,6 @@
         <ctl name="DEC8 Volume" value="84" />
     </path>
 
-    <path name="hifi-recorder-asmr-0">
-        <ctl name="SLIM_0_TX Channels" value="Two" />
-        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
-        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
-        <ctl name="CDC_IF TX7 MUX" value="DEC7" />
-        <ctl name="ADC MUX7" value="AMIC" />
-        <ctl name="AMIC MUX7" value="ADC3" />
-        <ctl name="ADC1 Volume" value="19" />
-        <ctl name="CDC_IF TX8 MUX" value="DEC8" />
-        <ctl name="ADC MUX8" value="AMIC" />
-        <ctl name="AMIC MUX8" value="ADC1" />
-        <ctl name="ADC3 Volume" value="19" />
-        <ctl name="DEC7 Volume" value="84" />
-        <ctl name="DEC8 Volume" value="84" />
-    </path>
-
-    <path name="hifi-recorder-asmr-90">
-        <ctl name="SLIM_0_TX Channels" value="Two" />
-        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
-        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
-        <ctl name="CDC_IF TX7 MUX" value="DEC7" />
-        <ctl name="ADC MUX7" value="AMIC" />
-        <ctl name="AMIC MUX7" value="ADC3" />
-        <ctl name="ADC1 Volume" value="19" />
-        <ctl name="CDC_IF TX8 MUX" value="DEC8" />
-        <ctl name="ADC MUX8" value="AMIC" />
-        <ctl name="AMIC MUX8" value="ADC1" />
-        <ctl name="ADC3 Volume" value="19" />
-        <ctl name="DEC7 Volume" value="84" />
-        <ctl name="DEC8 Volume" value="84" />
-    </path>
-
-    <path name="hifi-recorder-asmr-180">
-        <ctl name="SLIM_0_TX Channels" value="Two" />
-        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
-        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
-        <ctl name="CDC_IF TX7 MUX" value="DEC7" />
-        <ctl name="ADC MUX7" value="AMIC" />
-        <ctl name="AMIC MUX7" value="ADC1" />
-        <ctl name="ADC1 Volume" value="19" />
-        <ctl name="CDC_IF TX8 MUX" value="DEC8" />
-        <ctl name="ADC MUX8" value="AMIC" />
-        <ctl name="AMIC MUX8" value="ADC3" />
-        <ctl name="ADC3 Volume" value="19" />
-        <ctl name="DEC7 Volume" value="84" />
-        <ctl name="DEC8 Volume" value="84" />
-    </path>
-
-    <path name="hifi-recorder-asmr-270">
-        <ctl name="SLIM_0_TX Channels" value="Two" />
-        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
-        <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
-        <ctl name="CDC_IF TX7 MUX" value="DEC7" />
-        <ctl name="ADC MUX7" value="AMIC" />
-        <ctl name="AMIC MUX7" value="ADC1" />
-        <ctl name="ADC1 Volume" value="19" />
-        <ctl name="CDC_IF TX8 MUX" value="DEC8" />
-        <ctl name="ADC MUX8" value="AMIC" />
-        <ctl name="AMIC MUX8" value="ADC3" />
-        <ctl name="ADC3 Volume" value="19" />
-        <ctl name="DEC7 Volume" value="84" />
-        <ctl name="DEC8 Volume" value="84" />
-    </path>
     <path name="voice-memo-8K">
         <path name="handset-mic" />
     </path>
@@ -5060,37 +4906,31 @@
     <path name="headset-voice-memo-8k">
         <path name="headset-mic" />
         <ctl name="ADC2 Volume" value="6" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
     </path>
 
     <path name="headset-voice-memo">
         <path name="headset-mic" />
         <ctl name="ADC2 Volume" value="6" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
     </path>
 
     <path name="headset-voice-memo-hifi">
         <path name="headset-mic" />
         <ctl name="ADC2 Volume" value="6" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
     </path>
 
     <path name="headset-voice-memo-hifi-concert">
         <path name="headset-mic" />
         <ctl name="ADC2 Volume" value="6" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
     </path>
 
     <path name="headset-voice-memo-hifi-speech">
         <path name="headset-mic" />
         <ctl name="ADC2 Volume" value="6" />
-        <ctl name="DEC0 Volume" value="84" />
-    </path>
-
-    <path name="headset-voice-memo-hifi-asmr">
-        <path name="headset-mic" />
-        <ctl name="ADC2 Volume" value="6" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
     </path>
 
     <path name="bt-sco-mic-nrec-wb">
@@ -5108,7 +4948,7 @@
 
     <path name="voice-headset-mic-fluence">
         <path name="headset-mic" />
-        <ctl name="DEC0 Volume" value="86" />
+        <ctl name="DEC1 Volume" value="86" />
         <ctl name="ADC2 Volume" value="12" />
     </path>
 
@@ -5120,7 +4960,7 @@
 
     <path name="loopback-headset-mic">
         <path name="headset-mic" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
         <ctl name="ADC2 Volume" value="8" />
     </path>
 
@@ -5183,8 +5023,6 @@
 
     <path name="mictest-headset-mic">
          <path name="headset-mic" />
-         <ctl name="DEC0 Volume" value="84" />
-         <ctl name="ADC2 Volume" value="8" />
     </path>
 
     <path name="mictest-allmic">
@@ -5273,7 +5111,7 @@
     <path name="voip-headset-mic">
         <path name="headset-mic" />
         <ctl name="ADC2 Volume" value="16" />
-        <ctl name="DEC0 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="84" />
     </path>
 
     <path name="mmap-playback">
@@ -5397,4 +5235,5 @@
     <path name="hifi-record usb-headset-mic">
         <ctl name="MultiMedia2 Mixer USB_AUDIO_TX" value="1" />
     </path>
+
 </mixer>

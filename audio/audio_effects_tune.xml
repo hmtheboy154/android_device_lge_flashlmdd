@@ -60,8 +60,8 @@
 	<DTS-GAIN Type="DTS_ENABLE_BEQ" Gain="-1"/>
 	<!-- Absolute value: 0 disables CTC. 1 enables CTC. Default is -1 which means ignore this setting and use tuning value -->
 	<DTS-GAIN Type="DTS_ENABLE_CTC" Gain="-1"/>
-        <!-- Absolute value: 0 selects Alpha stereo speaker model. 1 selects Flash stereo speaker model. 2 selects Beta stereo speaker model. 3 selects TF10(tablet) stereo speaker model. 4 selects MH2, DH10 stereo speaker model. 5 selects signature, DH30 stereo speaker model. Default is 0 -->
-        <DTS-GAIN Type="DTS_SPEAKER_MODEL" Gain="4"/>
+	<!-- Absolute value: 0 selects Alpha stereo speaker model. 1 selects Flash stereo speaker model. Default is 0 -->
+	<DTS-GAIN Type="DTS_SPEAKER_MODEL" Gain="1"/>
 	<!-- Absolute value: 0 disables swap for output after eagle, 1 enable swap for output after eagle  -->
 	<DTS-GAIN Type="DTS_ENABLE_OUTPUT_SWAP" Gain="1"/>
 	<!-- Absolute value: 0 disables cross fading for output after eagle, 1 enable cross fading for output after eagle  -->

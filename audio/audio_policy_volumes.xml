@@ -25,18 +25,10 @@ volume index from 0 to 100.
 <volumes>
     <volume stream="AUDIO_STREAM_VOICE_CALL" deviceCategory="DEVICE_CATEGORY_HEADSET"
                                              ref="DEFAULT_VOIP_VOLUME_CURVE"/>
-    <volume stream="AUDIO_STREAM_VOICE_CALL" deviceCategory="DEVICE_CATEGORY_SPEAKER">
-         <point>0,-2800</point>
-         <point>33,-1400</point>
-         <point>66,-700</point>
-         <point>100,0</point>
-    </volume>
-    <volume stream="AUDIO_STREAM_VOICE_CALL" deviceCategory="DEVICE_CATEGORY_EARPIECE">
-         <point>0,-2100</point>
-         <point>33,-1400</point>
-         <point>66,-700</point>
-         <point>100,0</point>
-    </volume>
+    <volume stream="AUDIO_STREAM_VOICE_CALL" deviceCategory="DEVICE_CATEGORY_SPEAKER"
+                                             ref="DEFAULT_VOIP_VOLUME_CURVE"/>
+    <volume stream="AUDIO_STREAM_VOICE_CALL" deviceCategory="DEVICE_CATEGORY_EARPIECE"
+                                             ref="DEFAULT_VOIP_VOLUME_CURVE"/>
     <volume stream="AUDIO_STREAM_VOICE_CALL" deviceCategory="DEVICE_CATEGORY_EXT_MEDIA"
                                              ref="DEFAULT_MEDIA_VOLUME_CURVE"/>
     <volume stream="AUDIO_STREAM_SYSTEM" deviceCategory="DEVICE_CATEGORY_HEADSET"
@@ -170,9 +162,8 @@ volume index from 0 to 100.
     <reference name="DRC_SPK_ATTN_MEDIA_CURVE">
     <!--DRC SPK MEDIA CURVE -->
         <point>1,-5100</point>
-        <point>40,-2700</point>
-        <point>60,-1900</point>
-        <point>90,-800</point>
+        <point>66,-1900</point>
+	<point>86,-800</point>
         <point>100,0</point>
     </reference>
 
