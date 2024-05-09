@@ -13,7 +13,7 @@ DEVICE_PATH := device/lge/flashlmdd
 TARGET_SCREEN_DENSITY := 560
 
 # Kernel
-TARGET_KERNEL_CONFIG := vendor/flashlmdd_lao_com-perf_defconfig
+TARGET_KERNEL_CONFIG := vendor/lineageos_flash_defconfig
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
