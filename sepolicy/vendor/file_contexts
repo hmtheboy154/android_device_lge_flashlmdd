@@ -1,2 +1,0 @@
-# HALs
-/(vendor|system/vendor)/odm/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.lge_flash                   u:object_r:hal_lineage_livedisplay_qti_exec:s0
