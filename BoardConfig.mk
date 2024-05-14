@@ -23,5 +23,8 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/recovery.wipe
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 90
 
+# Vendor SPL
+VENDOR_SECURITY_PATCH := 2022-08-01
+
 # inherit from the proprietary version
 -include vendor/lge/flashlmdd/BoardConfigVendor.mk
