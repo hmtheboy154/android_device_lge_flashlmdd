@@ -12,10 +12,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/lge/flashlmdd/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/bliss/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_flashlmdd
+PRODUCT_NAME := bliss_flashlmdd
 PRODUCT_DEVICE := flashlmdd
 PRODUCT_MANUFACTURER := LGE
 PRODUCT_BRAND := LGE
